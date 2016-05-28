@@ -1,0 +1,35 @@
+C64 USB Keyboard mod
+Original by Pyofer
+See original thread @
+http://www.lemon64.com/forum/viewtopic.php?t=55650
+
+Modified to Support restore key & US/EU keymaps by dabone.
+Wiring is as follows
+64 Keyboard connector has 20 Pins with a key Pin @ Pin 2.
+Arduino Pro Micro Pinout
+https://cdn.sparkfun.com/assets/9/c/3/c/4/523a1765757b7f5c6e8b4567.png
+
+Board type should be Arduino Leonardo (or the Pro mini clones)
+
+
+KeyBoard     Arduino Pro Micro
+   20           2 - SDA
+   19           3 - SCL
+   18           4 - A6
+   17           5 -
+   16           6 - A7
+   15           7 -
+   14           8 - A8
+   13           9 - A9
+   12           10 - A10
+   11           16 - MOSI
+   10           14 - MISO
+   9            15 - SCLK
+   8            18 - A0
+   7            19 - A1
+   6            20 - A2
+   5            21 - A3
+   4            N/C
+   3            1 - TXD
+   2            N/C
+   1            8 - A8
