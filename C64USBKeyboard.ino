@@ -1,47 +1,47 @@
-// C64 USB Keyboard mod
-// Original by Pyofer
-// See original thread @
-// http://www.lemon64.com/forum/viewtopic.php?t=55650
-//
-// Modified to Support restore key & US/EU keymaps by dabone.
-// Wiring is as follows
-// 64 Keyboard connector has 20 Pins with a key Pin @ Pin 2.
-// Arduino Pro Micro Pinout
-// https://cdn.sparkfun.com/assets/9/c/3/c/4/523a1765757b7f5c6e8b4567.png
+// C64 USB Keyboard mod 
+// Original by Pyofer 
+// See original thread @ 
+// http://www.lemon64.com/forum/viewtopic.php?t=55650 
+// 
+// Modified to Support restore key & US/EU keymaps by dabone. 
+// Wiring is as follows 
+// 64 Keyboard connector has 20 Pins with a key Pin @ Pin 2. 
+// Arduino Pro Micro Pinout 
+// https://cdn.sparkfun.com/assets/9/c/3/c/4/523a1765757b7f5c6e8b4567.png 
 
-// Board type should be Arduino Leonardo (or the Pro mini clones)
+// Board type should be Arduino Leonardo (or the Pro mini clones) 
 
 
-//KeyBoard     Arduino Pro Micro
-//   20           2 - SDA
-//   19           3 - SCL
-//   18           4 - A6
-//   17           5 -
-//   16           6 - A7
-//   15           7 -
-//   14           8 - A8
-//   13           9 - A9
-//   12           10 - A10
-//   11           16 - MOSI
-//   10           14 - MISO
-//   9            15 - SCLK
-//   8            18 - A0
-//   7            19 - A1
-//   6            20 - A2
-//   5            21 - A3
-//   4            N/C
-//   3            1 - TXD
-//   2            N/C
-//   1            8 - A8
+//KeyBoard     Arduino Pro Micro 
+//   20           2 - SDA 
+//   19           3 - SCL 
+//   18           4 - A6 
+//   17           5 - 
+//   16           6 - A7 
+//   15           7 - 
+//   14           8 - A8 
+//   13           9 - A9 
+//   12           10 - A10 
+//   11           16 - MOSI 
+//   10           14 - MISO 
+//   9            15 - SCLK 
+//   8            18 - A0 
+//   7            19 - A1 
+//   6            20 - A2 
+//   5            21 - A3 
+//   4            N/C 
+//   3            1 - TXD 
+//   2            N/C 
+//   1            8 - A8 
 
 
 // Keyboard Matrix Now Matches real C64 with one more column.
-// Matrix can be found at
+// Matrix can be found at 
 // http://sta.c64.org/cbm64kbdlay.html
 
 // For Standard Keys See
 // http://www.asciitable.com/
-//
+// 
 // Arduino Keyboard Modifier Keys
 // Key                  Decimal value
 // KEY_LEFT_CTRL            128
@@ -96,8 +96,8 @@
 // Keypad 0 & Insert        234
 // Keypad . & Delete        235
 
-#include <HID.h>
-#include <Keyboard.h>
+#include <HID.h> 
+#include <Keyboard.h> 
 
 int inChar=0;
 int keyPos=0;
@@ -113,6 +113,7 @@ int windowsShift;
 int DefaultKBMode=0;                              // Select 0 For Windows Mode On startup or 1 for C64 Mode
 int USKeyboard=1;                                 // Select 1 for US Keyboard or 0 For EU
 int HybridKeyboard=1;                             // Select 0 for normal or 1 for the left shift key allowing all f keys and cursor keys in windows mode. (Also has a shifted restore key)
+
 
 
 char keyMapUS[216]={
@@ -140,9 +141,9 @@ char keyMapUS[216]={
 53,114,100,54,99,102,116,120,0,                   //  5 R D 6 C F T X Null
 55,121,103,56,98,104,117,118,0,                   //  7 Y G 8 B H U V Null
 57,105,106,48,109,107,111,110,0,                  //  9 I J Zero M K O N Null
-223,112,108,45,46,59,91,44,0,                      //  + P L - . : @ , Null
-92,93,39,210,133,61,212,47,203,                   //  Pound * ; Home RSHFT = Pi / Restore
-49,177,179,50,32,128,113,130,0,                   //  1 BS CTRL 2 SPC C= Q RunStop Null
+45,112,108,61,46,59,91,44,0,                      //  + P L - . : @ , Null
+209,93,39,210,133,92,212,47,205,                  //  Pound * ; Home RSHFT = Pi / Restore
+49,223,9,50,32,128,113,177,0,                     //  1 BS CTRL 2 SPC C= Q RunStop Null
 
 };
 
@@ -177,14 +178,14 @@ char keyMapEU[216]={
 };
 
 char Hybridkeys[7]{
-                                                  // Hybrid Keys. These are the shifted values.
+                                                  // Hybrid Keys. These are the shifted values.  
 216,201,195,197,199,218,205,                      // LR F8 F2 F4 F6 UD Restore
 };
 void setup() {
   Keyboard.begin();// initialize control over the keyboard:
-
+  
   for (i=0; i<64; i++) keyDown[i]=0; // Set all keys as up
-
+  
   pinMode(2,OUTPUT);  // configure inputs and outputs
   pinMode(3,OUTPUT);
   pinMode(4,OUTPUT);
@@ -203,7 +204,7 @@ void setup() {
   pinMode(A2,INPUT_PULLUP);
   pinMode(A3,INPUT_PULLUP);
   pinMode(1,INPUT_PULLUP);
-
+  
   digitalWrite(2,LOW);  // start with one active pin to detect '1'
   digitalWrite(3,HIGH);
   digitalWrite(4,HIGH);
@@ -212,9 +213,9 @@ void setup() {
   digitalWrite(7,HIGH);
   digitalWrite(8,HIGH);
   digitalWrite(9,HIGH);
-
+  
   if (DefaultKBMode==1)
-  {
+  {  
   if (!digitalRead(10)) windowsShift=1; else windowsShift=0; // detect if '1' is held on power up to swap mode
   }
   if (DefaultKBMode==0)
@@ -225,7 +226,7 @@ void setup() {
 
 void loop() // main keyboard scanning loop
 {
-
+ 
   for (outPin=2;outPin<10; outPin++) // scan through all rows
     {
     pinMode(2,INPUT);  // set unused (all) outputs to input to avoid ghosting
@@ -236,11 +237,11 @@ void loop() // main keyboard scanning loop
     pinMode(7,INPUT);
     pinMode(8,INPUT);
     pinMode(9,INPUT);
-
+    
     // pinMode(outPin,OUTPUT);  // select output to activate
     // digitalWrite(outPin,LOW); // set it as low, a pressed key will be pulled to ground
     // Changed order to match real c64 keyboard matrix layout.
-
+    
     if (outPin==2) pinMode (9,OUTPUT);digitalWrite(9,LOW);outPinSet=9;
     if (outPin==3) pinMode (3,OUTPUT);digitalWrite(3,LOW);outPinSet=3;
     if (outPin==4) pinMode (4,OUTPUT);digitalWrite(4,LOW);outPinSet=4;
@@ -249,8 +250,8 @@ void loop() // main keyboard scanning loop
     if (outPin==7) pinMode (7,OUTPUT);digitalWrite(7,LOW);outPinSet=7;
     if (outPin==8) pinMode (8,OUTPUT);digitalWrite(8,LOW);outPinSet=8;
     if (outPin==9) pinMode (2,OUTPUT);digitalWrite(2,LOW);outPinSet=2;
-
-
+    
+    
     for (i=0; i<9; i++) // scan through columns
       {
       keyPos=i+((outPin-2)*9); // calculate character map position
@@ -273,7 +274,7 @@ void loop() // main keyboard scanning loop
       if (i==6) digitalread=1-digitalRead(A2);
       if (i==7) digitalread=1-digitalRead(15);
       if (i==8) digitalread=1-digitalRead(1);
-
+ 
  if (HybridKeyboard==1)
  {
                   if ((millis()-lastDebounceTime[keyPos])>debounceDelay) // debounce for each key individually
@@ -288,7 +289,7 @@ void loop() // main keyboard scanning loop
                         if (keyDown[16]&&keyDown[6])  {Keyboard.release (keyDown[16]);keyDown[keyPos]=Hybridkeys[4];}
                         if (keyDown[16]&&keyDown[7])  {Keyboard.release (keyDown[16]);keyDown[keyPos]=Hybridkeys[5];}
                         if (keyDown[16]&&keyDown[62]) {Keyboard.release (keyDown[16]);keyDown[keyPos]=Hybridkeys[6];}
-
+        
         if ((keyPos!=16&&keyPos!=58)||windowsShift==1)// is it not-shift or in windows mode?
           {  // if so pass the key through
           lastDebounceTime[keyPos] = millis(); // reset the debounce delay
@@ -300,7 +301,7 @@ void loop() // main keyboard scanning loop
         {
         if ((keyPos!=16&&keyPos!=58)||windowsShift==1) // not-shift or windows mode
           {
-          lastDebounceTime[keyPos] = millis5555555555555555555555555555555555555555555555555555555555555566666666666(555555)56;  // reset keybounce delay
+          lastDebounceTime[keyPos] = millis();  // reset keybounce delay
           Keyboard.release(keyDown[keyPos]);    // pass key release to windows
           }
           else { lastDebounceTime[keyPos]=millis(); shift=0; } // reset keybounce delay and mark as un-shifted
@@ -334,9 +335,9 @@ void loop() // main keyboard scanning loop
         }
    }
   }
-
+  
       }
   digitalWrite(outPinSet,HIGH); // set output back to high
  }
 
-} 
+}
