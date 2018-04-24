@@ -12,27 +12,41 @@
 // Board type should be Arduino Leonardo (or the Pro mini clones) 
 
 
-//KeyBoard     Arduino Pro Micro 
-//   20           2 - SDA 
-//   19           3 - SCL 
-//   18           4 - A6 
-//   17           5 - 
-//   16           6 - A7 
-//   15           7 - 
-//   14           8 - A8 
-//   13           9 - A9 
-//   12           10 - A10 
-//   11           16 - MOSI 
-//   10           14 - MISO 
-//   9            15 - SCLK 
-//   8            18 - A0 
-//   7            19 - A1 
-//   6            20 - A2 
-//   5            21 - A3 
-//   4            N/C 
-//   3            1 - TXD 
-//   2            N/C 
-//   1            8 - A8 
+//KeyBoard Arduino Pro Micro 
+//	Pin     Pin     Label
+
+//   20       5       2 - SDA
+//   19       6       3 - SCL
+//   18       7       4 - A6
+//   17       8       5
+//   16       9       6 - A7
+//   15       10      7 - 
+//   14       11      8 - A8 
+//   13       12      9 - A9 
+//   12       13      10 - A10 
+//   11       14      16 - MOSI 
+//   10       15      14 - MISO 
+//   9        16      15 - SCLK 
+//   8        17      18 - A0 
+//   7        18      19 - A1 
+//   6        19      20 - A2 
+//   5        20      21 - A3 
+//   4        N/C
+//   3        1       1 - TX
+//   2        N/C
+//   1        11      8 - A8 
+
+//   Joysticks
+//	Pins 1,2,3,4,6 Are Both Joysticks to the same input.
+//	 1        5       2 - SDA
+//	 2        6       3 - SCL
+//	 3        7       4 - A6
+//	 4        8       5
+//	 6        9       6 - A7
+//  Joy 1
+//	 8        1       1 - TX
+//  Joy 2
+//	 8        2       2 - RX
 
 
 // Keyboard Matrix Now Matches real C64 with one more column.
