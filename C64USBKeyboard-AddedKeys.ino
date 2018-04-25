@@ -13,7 +13,7 @@
 
 
 //KeyBoard Arduino Pro Micro 
-//	Pin     Pin     Label
+//  Pin     Pin     Label
 
 //   20       5       2 - SDA
 //   19       6       3 - SCL
@@ -37,16 +37,16 @@
 //   1        11      8 - A8 
 
 //   Joysticks
-//	Pins 1,2,3,4,6 Are Both Joysticks to the same input.
-//	 1        5       2 - SDA
-//	 2        6       3 - SCL
-//	 3        7       4 - A6
-//	 4        8       5
-//	 6        9       6 - A7
+//  Pins 1,2,3,4,6 Are Both Joysticks to the same input.
+//   1        5       2 - SDA
+//   2        6       3 - SCL
+//   3        7       4 - A6
+//   4        8       5
+//   6        9       6 - A7
 //  Joy 1
-//	 8        1       1 - TX
+//   8        1       1 - TX
 //  Joy 2
-//	 8        2       2 - RX
+//   8        2       2 - RX
 
 
 // Keyboard Matrix Now Matches real C64 with one more column.
@@ -197,7 +197,7 @@ char keyMapEU[240]={
 
 char Hybridkeys[7]{
                                                   // Hybrid Keys. These are the shifted values.  
-216,201,195,197,199,218,205,                      // LR F8 F2 F4 F6 UD Restore
+216,201,195,197,199,218,203,                      // LR F8 F2 F4 F6 UD Restore
 };
 void setup() {
   Keyboard.begin();// initialize control over the keyboard:
@@ -308,7 +308,7 @@ void loop() // main keyboard scanning loop
                         if (keyDown[17]&&keyDown[5])  {Keyboard.release (keyDown[17]);keyDown[keyPos]=Hybridkeys[3];}
                         if (keyDown[17]&&keyDown[6])  {Keyboard.release (keyDown[17]);keyDown[keyPos]=Hybridkeys[4];}
                         if (keyDown[17]&&keyDown[7])  {Keyboard.release (keyDown[17]);keyDown[keyPos]=Hybridkeys[5];}
-                        if (keyDown[17]&&keyDown[66]) {Keyboard.release (keyDown[17]);keyDown[keyPos]=Hybridkeys[6];}
+                        if (keyDown[17]&&keyDown[68]) {Keyboard.release (keyDown[17]);keyDown[keyPos]=Hybridkeys[6];}
         
         if ((keyPos!=17&&keyPos!=64)||windowsShift==1)// is it not-shift or in windows mode?
           {  // if so pass the key through
