@@ -161,7 +161,7 @@ char keyMapUS[240]={
 57,105,106,48,109,107,111,110,132,207,                  //  9 I J Zero M K O N Rcrtl ScrLk
 45,112,108,61,46,59,91,44,0,0,                      //  + P L - . : @ , Null Null
 209,93,39,210,133,92,212,47,205,0,                  //  Pound * ; Home RSHFT = Pi / Restore Null
-49,223,9,50,32,128,113,177,232,220,                     //  1 BS CTRL 2 SPC C= Q RunStop KP8 KP/
+49,177,9,50,32,128,113,130,232,220,                     //  1 BS CTRL 2 SPC C= Q RunStop KP8 KP/
 
 };
 
