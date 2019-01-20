@@ -187,7 +187,7 @@ char keyMapEU[240]={
 51,119,97,52,122,115,101,129,226,221,                   //  3 W A 4 Z S E LSHFT KP2 Kp*                       (Last 2 Joy Down JOY2,JOY1)
 53,114,100,54,99,102,116,120,228,222,                   //  5 R D 6 C F T X KP4 KP-                           (Last 2 Joy Left JOY2,JOY1)
 55,121,103,56,98,104,117,118,230,223,                   //  7 Y G 8 B H U V KP6 KP+                           (Last 2 Joy Right JOY2,JOY1)
-57,105,106,48,109,107,111,110,229,207,                  //  9 I J Zero M K O N KP5l ScrLk                     (Last 2 Joy Firebutton 1 JOY2,JOY1)
+57,105,106,48,109,107,111,110,229,207,                  //  9 I J Zero M K O N KP5 ScrLk                     (Last 2 Joy Firebutton 1 JOY2,JOY1)
 43,112,108,45,46,58,34,44,227,225,                      //  + P L - . : @ , KP3 KP1                           (Last 2 Joy Firebutton 2 JOY2,JOY1)
 35,42,59,210,133,61,211,47,205,0,                       //  Pound * ; Home RSHFT = Pi / Restore Null
 49,178,128,50,32,135,113,177,232,220,                   //  1 BS CTRL 2 SPC C= Q RunStop KP8 KP/              (Last 2 Joy UP JOY2,JOY1)
@@ -198,7 +198,7 @@ char keyMapEU[240]={
 92,87,65,36,90,83,69,129,226,221,                       //  # W A $ Z S E LSHFT KP2 Kp*                       (Last 2 Joy Down JOY2,JOY1)
 37,82,68,38,67,70,84,88,228,222,                        //  % R D & C F T X KP4 KP-                           (Last 2 Joy Left JOY2,JOY1)
 39,89,71,40,66,72,85,86,230,223,                        //  ' Y G ( B H U V KP6 KP+                           (Last 2 Joy Right JOY2,JOY1)
-41,73,74,48,77,75,79,78,229,207,                        //  ) I J Zero M K O N KP5l ScrLk                     (Last 2 Joy Firebutton 1 JOY2,JOY1)
+41,73,74,48,77,75,79,78,229,207,                        //  ) I J Zero M K O N KP5 ScrLk                     (Last 2 Joy Firebutton 1 JOY2,JOY1)
 43,80,76,95,62,91,96,60,227,225,                        //  + P L - > : @ < KP3 KP1                           (Last 2 Joy Firebutton 2 JOY2,JOY1)
 35,42,93,210,133,61,214,63,205,0,                       //  Pound * ; Home RSHFT = Pi ? Restore Null
 33,178,128,64,32,135,81,177,232,220,                    //  ! BS CTRL " SPC C= Q RS KP8 KP/                   (Last 2 Joy UP JOY2,JOY1)
@@ -209,7 +209,7 @@ char keyMapEU[240]={
 51,119,97,52,122,115,101,129,226,221,                   //  3 W A 4 Z S E LSHFT KP2 Kp*                       (Last 2 Joy Down JOY2,JOY1)
 53,114,100,54,99,102,116,120,228,222,                   //  5 R D 6 C F T X KP4 KP-                           (Last 2 Joy Left JOY2,JOY1)
 55,121,103,56,98,104,117,118,230,223,                   //  7 Y G 8 B H U V KP6 KP+                           (Last 2 Joy Right JOY2,JOY1)
-57,105,106,48,109,107,111,110,229,207,                  //  9 I J Zero M K O N KP5l ScrLk                     (Last 2 Joy Firebutton 1 JOY2,JOY1)
+57,105,106,48,109,107,111,110,229,207,                  //  9 I J Zero M K O N KP5 ScrLk                     (Last 2 Joy Firebutton 1 JOY2,JOY1)
 45,112,108,61,46,59,91,44,227,225,                      //  + P L - . : @ , KP3 KP1                           (Last 2 Joy Firebutton 2 JOY2,JOY1)
 209,93,39,210,133,92,212,47,205,0,                      //  Pound * ; Home RSHFT = Pi / Restore Null
 49,223,9,50,32,128,113,177,232,220,                     //  1 BS CTRL 2 SPC C= Q RunStop KP8 KP/              (Last 2 Joy UP JOY2,JOY1)
