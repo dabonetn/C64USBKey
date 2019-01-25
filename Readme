@@ -3,7 +3,11 @@ Original by Pyofer
 See original thread @
 http://www.lemon64.com/forum/viewtopic.php?t=55650
 
-Modified to Support restore key & US/EU keymaps by dabone.
+New for 2019.
+Optimized some code, added a second joystick fire button on pin 9, and decided to just go foward with the joystick version.
+If you don't want to use joystick support, just use the keyboard connections only. Nothing else needed to config.
+
+Modified to Support restore key,US/EU keymaps and joysticks by dabone.
 Wiring is as follows
 64 Keyboard connector has 20 Pins with a key Pin @ Pin 2.
 Arduino Pro Micro Pinout
@@ -36,3 +40,19 @@ KeyBoard Arduino Pro Micro
    3        1       1 - TX
    2        N/C
    1        11      8 - A8 
+
+
+
+Joysticks
+Pins 1,2,3,4,6 Are Both Joysticks to the same input.
+
+  1        5       2 - SDA
+  2        6       3 - SCL
+  3        7       4 - A6
+  4        8       5
+  6        9       6 - A7
+  9        10      7 - 
+Joy 1
+  8        1       1 - TX
+Joy 2
+  8        2       2 - RX
