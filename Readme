@@ -44,7 +44,7 @@ KeyBoard Arduino Pro Micro
 
 
 Joysticks
-Pins 1,2,3,4,6 Are Both Joysticks to the same input.
+Pins 1,2,3,4,6,9 Are Both Joysticks to the same input.
 
   1        5       2 - SDA
   2        6       3 - SCL
