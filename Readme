@@ -4,55 +4,60 @@ See original thread @
 http://www.lemon64.com/forum/viewtopic.php?t=55650
 
 New for 2019.
-Optimized some code, added a second joystick fire button on pin 9, and decided to just go foward with the joystick version.
+Optimized some code (Well my friend Worm did. :) Thank you so much )
+Added a second joystick fire button on pin 9, and decided to just go foward with the joystick version.
 If you don't want to use joystick support, just use the keyboard connections only. Nothing else needed to config.
 
-Modified to Support restore key,US/EU keymaps and joysticks by dabone.
-Wiring is as follows
-64 Keyboard connector has 20 Pins with a key Pin @ Pin 2.
-Arduino Pro Micro Pinout
-https://cdn.sparkfun.com/assets/9/c/3/c/4/523a1765757b7f5c6e8b4567.png
+See inside the INO file for wiring instructions.
 
-Board type should be Arduino Leonardo (or the Pro mini clones)
-Pins listed are for the Arduino Pro Micro layout.
+Variables to take note of.
 
 
-KeyBoard Arduino Pro Micro 
-  Pin     Pin     Label
+int DefaultKBMode=0;                                  // Select 0 For Windows Mode On startup or 1 for C64 Mode
 
-   20       5       2 - SDA
-   19       6       3 - SCL
-   18       7       4 - A6
-   17       8       5
-   16       9       6 - A7
-   15       10      7 - 
-   14       11      8 - A8 
-   13       12      9 - A9 
-   12       13      10 - A10 
-   11       14      16 - MOSI 
-   10       15      14 - MISO 
-   9        16      15 - SCLK 
-   8        17      18 - A0 
-   7        18      19 - A1 
-   6        19      20 - A2 
-   5        20      21 - A3 
-   4        N/C
-   3        1       1 - TX
-   2        N/C
-   1        11      8 - A8 
+If you use 64 mode, the shift key won't be sent to the computer, but the shifted character will be.
+64 Mode keysets are the first 2 in each map. 1st is unshifted, 2nd is shifted values.
+Windows mode passes the shift key to the computer and lets it handle the key shifting according to the OS keymap
+
+int USKeyboard=1;                                     // Select 1 for US Keyboard or 0 For EU
+
+This selects which keymap, US or EU.
+The EU set is a carry over from the original code by Pyofer, and may contain errors, please open a issue if you find one please.
+
+int HybridKeyboard=1;                                 // Select 0 for normal or 1 for the left HybridKey allowing all f keys and cursor keys in windows mode. (Also has a shifted restore key)
+
+Hybridkeys are there to let you actually type Cursor up, Cursor left and F2 F4 F6 F8 to the computer in windows mode.
+Without this you could only pass the actual key shifted.
 
 
+int HybridKey=17;                                     // Position of the Hybrid Select key in the keymap, Left Shift = 17, Right Shift = 64
 
-Joysticks
-Pins 1,2,3,4,6,9 Are Both Joysticks to the same input.
+Selects which shift key to activate hybridkeys. You could also make it a completely different key, this value is the position of the key
+in the keyset. 
 
-  1        5       2 - SDA
-  2        6       3 - SCL
-  3        7       4 - A6
-  4        8       5
-  6        9       6 - A7
-  9        10      7 - 
-Joy 1
-  8        1       1 - TX
-Joy 2
-  8        2       2 - RX
+
+Keys That are diffent than the labels
+
+In Windows Mode
+
+Commodore                 Actual Key               Keycode
+Key Label                 Sent
+
+Back Arrow                ESC                      177
+CTRL                      TAB                        9
+RUN/STOP                  ALT                      130
+CommdoreKey               LEFT-CTRL                128
++                         -                         45        This makes typing easier for me, because it maps them like a standard keyboard
+-                         =                         61        Not reversed like on the actual C64. Shifted - key gives a + like a real pc keyboard
+Pound                     Insert                   209
+CLR/HOME                  Home                     210
+INST/DEL                  Backspace                178
+@                         [                         91
+*                         ]                         93
+RESTORE                   F12                      205        Shifted Value with HYBRIDKEYS=1 is F10, Keycode 203
+:                         ;                         59
+;                         '                         39
+UPARROW(Pi)               Delete                   212
+=                         \                         92
+
+!!!!!!!!Need Testers for the EU modes and both modes for the Commodore mode keysets.!!!!!!!!
