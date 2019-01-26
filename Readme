@@ -40,24 +40,24 @@ Keys That are diffent than the labels
 
 In Windows Mode
 
-Commodore                 Actual Key               Keycode
-Key Label                 Sent
+Commodore        Actual Key    Keycode
+Key Label          Sent
 
-Back Arrow                ESC                      177
-CTRL                      TAB                        9
-RUN/STOP                  ALT                      130
-CommdoreKey               LEFT-CTRL                128
-+                         -                         45        This makes typing easier for me, because it maps them like a standard keyboard
--                         =                         61        Not reversed like on the actual C64. Shifted - key gives a + like a real pc keyboard
-Pound                     Insert                   209
-CLR/HOME                  Home                     210
-INST/DEL                  Backspace                178
-@                         [                         91
-*                         ]                         93
-RESTORE                   F12                      205        Shifted Value with HYBRIDKEYS=1 is F10, Keycode 203
-:                         ;                         59
-;                         '                         39
-UPARROW(Pi)               Delete                   212
-=                         \                         92
+Back Arrow       ESC           177
+CTRL             TAB             9
+RUN/STOP         ALT           130
+CommdoreKey      LEFT-CTRL     128
++                -              45        This makes typing easier for me, because it maps them like a standard keyboard
+-                =              61        Not reversed like on the actual C64. Shifted - key gives a + like a real pc keyboard
+Pound            Insert        209
+CLR/HOME         Home          210
+INST/DEL         Backspace     178
+@                [              91
+*                ]              93
+RESTORE          F12           205        Shifted Value with HYBRIDKEYS=1 is F10, Keycode 203
+:                ;              59
+;                '              39
+UPARROW(Pi)      Delete        212
+=                \              92
 
 !!!!!!!!Need Testers for the EU modes and both modes for the Commodore mode keysets.!!!!!!!!
