@@ -125,27 +125,27 @@
 
 int inChar=0;
 int keyPos=0;
-int digitalread=0;
 int keyDown[80];
 long lastDebounceTime[80];
 int debounceDelay=50;
 int shift=0;
 int Row=0;
-int outPin=2;
-int outPinSet=0;
-int i;
+ int i;
 char * keyMap;
-int initpin;
 int windowsShift;
 int DefaultKBMode=0;                                  // Select 0 For Windows Mode On startup or 1 for C64 Mode
 int USKeyboard=1;                                     // Select 1 for US Keyboard or 0 For EU
-int HybridKeyboard=1;                                 // Select 0 for normal or 1 for the left shift key allowing all f keys and cursor keys in windows mode. (Also has a shifted restore key)
+int HybridKeyboard=1;                                 // Select 0 for normal or 1 for the left HybridKey allowing all f keys and cursor keys in windows mode. (Also has a shifted restore key)
+int HybridKey=17;                                     // Position of the Hybrid Select key in the keymap, Left Shift = 17, Right Shift = 64
+int RowPinMap[8] = {9, 3, 4, 5, 6, 7, 8, 2};                // Convert Row number to associated output pin
+int ColPinMap[10] = {10, 16, 14, A3, A0, A1, A2, 15, 1, 0}; // Convert Col number to associated input pin
+
 
 char keyMapUS[240]={
 // US Keymaps                                         // Joystick Keys are the indicated by J(Direction) then number, i.e JU1 is up on joystick one.
                                                       // Firebuttons are Noted JF(Joystick number)- Fire Button number, i.e JF2-1 Joystick 2, fire button 1, JF2-2 Joystick 2, fire button 2.
                                                       // Current values for the Joysticks are located at the end of each line. KP stands for numeric keypad inputs.
-								 
+                 
 // C64 Mode
 // This keyset is for C64 mode, without the shift key pressed.
 // C64 mode doesn't pass the shift key to the computer
@@ -189,7 +189,7 @@ char keyMapEU[240]={
 // EU Keymaps                                         // Joystick Keys are the indicated by J(Direction) then number, i.e JU1 is up on joystick one.
                                                       // Firebuttons are Noted JF(Joystick number)- Fire Button number, i.e JF2-1 Joystick 2, fire button 1, JF2-2 Joystick 2, fire button 2.
                                                       // Current values for the Joysticks are located at the end of each line. KP stands for numeric keypad inputs.
-													  
+                            
 // C64 Mode
 // This keyset is for C64 mode, without the shift key pressed.
 // C64 mode doesn't pass the shift key to the computer
@@ -226,128 +226,105 @@ char keyMapEU[240]={
  57, 105, 106,  48, 109, 107, 111, 110, 229, 207,     //  9     I      J    Zero M     K   O   N       JF2-1   JF1-1    (KP5     ScrLk)
  45, 112, 108,  61,  46,  59,  91,  44, 227, 225,     //  +     P      L    -    .     :   @   ,       JF2-2   JF1-2    (KP3     KP1)
 209,  93,  39, 210, 133,  92, 212,  47, 205,   0,     //  Pound *      ;    Home RSHFT =   Pi  /       Restore Null
- 49, 223,   9,  50,  32, 128, 113, 177, 232, 220,     //  1     BS     CTRL 2    SPC   C=  Q   RunStop JU2     JU1      (KP8     KP/)
+ 49, 177,   9,  50,  32, 128, 113, 130, 232, 220,     //  1     BS     CTRL 2    SPC   C=  Q   RunStop JU2     JU1      (KP8     KP/)
 };
 
 char Hybridkeys[7]{
                                                       // Hybrid Keys. These are the shifted values.  
                                                       // These allow keys to be passed in windows mode that are not shifted values of the original key. 
-													                            // This allows the windows mode to use the cursor keys and F1-F8. The cursor keys and F keys are default, The restore key is F10.
+                                                      // This allows the windows mode to use the cursor keys and F1-F8. The cursor keys and F keys are default, The restore key is F10.
 216, 201, 195, 197, 199, 218, 203,                    // LR F8 F2 F4 F6 UD Restore
 };
 
-void setup() {
-  
+void setup() 
+{
   Keyboard.begin();// initialize control over the keyboard:
-  for (i=0; i<80; i++) keyDown[i]=0; // Set all keys as up
-  pinMode(2,OUTPUT);  // configure inputs and outputs
-  pinMode(3,OUTPUT);
-  pinMode(4,OUTPUT);
-  pinMode(5,OUTPUT);
-  pinMode(6,OUTPUT);
-  pinMode(7,OUTPUT);
-  pinMode(8,OUTPUT);
-  pinMode(9,OUTPUT);
 
-  pinMode(10,INPUT_PULLUP); // use internal pullups to hold pins high
-  pinMode(16,INPUT_PULLUP);
-  pinMode(15,INPUT_PULLUP);
-  pinMode(14,INPUT_PULLUP);
-  pinMode(A0,INPUT_PULLUP);
-  pinMode(A1,INPUT_PULLUP);
-  pinMode(A2,INPUT_PULLUP);
-  pinMode(A3,INPUT_PULLUP);
-  pinMode(1,INPUT_PULLUP);
-  pinMode(0,INPUT_PULLUP);
+  for (i=0; i<80; i++) keyDown[i]=0; // Set all keys as up
   
-  digitalWrite(2,LOW);  // start with one active pin to detect '1'
-  digitalWrite(3,HIGH);
-  digitalWrite(4,HIGH);
-  digitalWrite(5,HIGH);
-  digitalWrite(6,HIGH);
-  digitalWrite(7,HIGH);
-  digitalWrite(8,HIGH);
-  digitalWrite(9,HIGH);
-  
+  // Old code mapped row pins to OUTPUT, set Row on pin 2 LOW and 
+  // all of the rest HIGH, but then turned it right around and 
+  // made them all INPUT during the first call to loop().  Just 
+  // make them all INPUT and keep them HIGH with internal pullups, 
+  // since they were set to HIGH after scanning a Row anyway.
+  for (int Row=0; Row<8; Row++)
+   pinMode(RowPinMap[Row], INPUT_PULLUP); 
+
+  for (int Col=0; Col<10; Col++)
+    pinMode(ColPinMap[Col],INPUT_PULLUP); // use internal pullups to hold pins high
+
   if (DefaultKBMode==1)
   {  
-  if (!digitalRead(10)) windowsShift=1; else windowsShift=0; // detect if '1' is held on power up to swap mode
+    if (!digitalRead(10)) windowsShift=1; else windowsShift=0; // detect if '1' is held on power up to swap mode
   }
   if (DefaultKBMode==0)
   {
-  if (!digitalRead(10)) windowsShift=0; else windowsShift=1; // detect if '1' is held on power up to swap mod
+    if (!digitalRead(10)) windowsShift=0; else windowsShift=1; // detect if '1' is held on power up to swap mod
   }
-    if (USKeyboard == 1)
+  if (USKeyboard == 1)
     {keyMap = keyMapUS;}
   else
     {keyMap = keyMapEU;}
- }
+}
 
-void initToInputs(void)
-{
-for (int initpin = 2; initpin < 10; initpin++)
-       {pinMode(initpin,INPUT);}
- }
 
 void loop() // main keyboard scanning loop
 {
-  unsigned int InPinMap[10] = {10, 16, 14, A3, A0, A1, A2, 15, 1, 0};
-  for (outPin=2;outPin<10; outPin++) // scan through all rows
-    {
-    initToInputs();                 // Set all pins to INPUT to prevent ghosting   
-    if (outPin==2) pinMode (9,OUTPUT);digitalWrite(9,LOW);outPinSet=9;
-    if (outPin==3) pinMode (3,OUTPUT);digitalWrite(3,LOW);outPinSet=3;
-    if (outPin==4) pinMode (4,OUTPUT);digitalWrite(4,LOW);outPinSet=4;
-    if (outPin==5) pinMode (5,OUTPUT);digitalWrite(5,LOW);outPinSet=5;
-    if (outPin==6) pinMode (6,OUTPUT);digitalWrite(6,LOW);outPinSet=6;
-    if (outPin==7) pinMode (7,OUTPUT);digitalWrite(7,LOW);outPinSet=7;
-    if (outPin==8) pinMode (8,OUTPUT);digitalWrite(8,LOW);outPinSet=8;
-    if (outPin==9) pinMode (2,OUTPUT);digitalWrite(2,LOW);outPinSet=2;
+  int InputValue; // Replaces digitalread, so that global variable can be removed
+  int RowPin;     // Replaces rowPinSet, so that global variable can be removed
+
+  for (int Row=0; Row<8; Row++) // scan through all rows
+  {
+    RowPin = RowPinMap[Row];  // Map logical row to output pin
+    pinMode(RowPin,OUTPUT);   // Set output pin to OUTPUT
+    digitalWrite(RowPin,LOW); // Set output pin to LOW
     
-    for (i=0; i<10; i++) // scan through columns
-      {
-      keyPos=i+((outPin-2)*10); // calculate character map position
+    for (int Col=0; Col<10; Col++) // scan through columns
+    {
+      keyPos=Col+(Row*10); // calculate character map position
       
       if (!windowsShift) inChar=keyMap[keyPos+shift]; // work out which key it is from the map and shift if needed
-       else inChar=keyMap[keyPos+160];  // use "windows" keymap where shift is passed through
+      else inChar=keyMap[keyPos+160];  // use "windows" keymap where shift is passed through
 
-      digitalread=1-digitalRead(InPinMap[i]);
+      InputValue = digitalRead(ColPinMap[Col]); // LOW = Key pressed, HIGH = Key Not Pressed
 
-    if ((millis()-lastDebounceTime[keyPos])>debounceDelay) // debounce for each key individually
-   {
-      if (digitalread==1 && keyDown[keyPos]==0) // if a key is pressed and wasn't already down
+      if ((millis()-lastDebounceTime[keyPos])>debounceDelay) // debounce for each key individually
+      {
+        if ((InputValue == LOW) && keyDown[keyPos]==0) // if a key is pressed and wasn't already down
         {
           keyDown[keyPos]=inChar;        // put the right character in the keydown array
-        if (HybridKeyboard==1)
+          if (HybridKeyboard==1)
           {
-            if (keyDown[17]&&keyDown[2])  {Keyboard.release (keyDown[17]);keyDown[keyPos]=Hybridkeys[0];}
-            if (keyDown[17]&&keyDown[3])  {Keyboard.release (keyDown[17]);keyDown[keyPos]=Hybridkeys[1];}
-            if (keyDown[17]&&keyDown[4])  {Keyboard.release (keyDown[17]);keyDown[keyPos]=Hybridkeys[2];}
-            if (keyDown[17]&&keyDown[5])  {Keyboard.release (keyDown[17]);keyDown[keyPos]=Hybridkeys[3];}
-            if (keyDown[17]&&keyDown[6])  {Keyboard.release (keyDown[17]);keyDown[keyPos]=Hybridkeys[4];}
-            if (keyDown[17]&&keyDown[7])  {Keyboard.release (keyDown[17]);keyDown[keyPos]=Hybridkeys[5];}
-            if (keyDown[17]&&keyDown[68]) {Keyboard.release (keyDown[17]);keyDown[keyPos]=Hybridkeys[6];}
+            if (keyDown[HybridKey]&&keyDown[2])  {Keyboard.release (keyDown[HybridKey]);keyDown[keyPos]=Hybridkeys[0];}
+            if (keyDown[HybridKey]&&keyDown[3])  {Keyboard.release (keyDown[HybridKey]);keyDown[keyPos]=Hybridkeys[1];}
+            if (keyDown[HybridKey]&&keyDown[4])  {Keyboard.release (keyDown[HybridKey]);keyDown[keyPos]=Hybridkeys[2];}
+            if (keyDown[HybridKey]&&keyDown[5])  {Keyboard.release (keyDown[HybridKey]);keyDown[keyPos]=Hybridkeys[3];}
+            if (keyDown[HybridKey]&&keyDown[6])  {Keyboard.release (keyDown[HybridKey]);keyDown[keyPos]=Hybridkeys[4];}
+            if (keyDown[HybridKey]&&keyDown[7])  {Keyboard.release (keyDown[HybridKey]);keyDown[keyPos]=Hybridkeys[5];}
+            if (keyDown[HybridKey]&&keyDown[68]) {Keyboard.release (keyDown[HybridKey]);keyDown[keyPos]=Hybridkeys[6];}
           }
           
-        if ((keyPos!=17&&keyPos!=64)||windowsShift==1)// is it not-shift or in windows mode?
+          if ((keyPos!=17&&keyPos!=64)||windowsShift==1)// is it not-shift or in windows mode?
           {  // if so pass the key through
-          lastDebounceTime[keyPos] = millis(); // reset the debounce delay
-          Keyboard.press(keyDown[keyPos]);    // pass the keypress to windows
+            lastDebounceTime[keyPos] = millis(); // reset the debounce delay
+            Keyboard.press(keyDown[keyPos]);    // pass the keypress to windows
           }
-        else { lastDebounceTime[keyPos]=millis(); shift=80; } // reset keybounce delay and mark as shift press
+          else { lastDebounceTime[keyPos]=millis(); shift=80; } // reset keybounce delay and mark as shift press
         }
-      if (digitalread==0 && keyDown[keyPos]!=0) // key is up and a character is stored in the keydown position
+        if ((InputValue == HIGH) && keyDown[keyPos]!=0) // key is up and a character is stored in the keydown position
         {
-        if ((keyPos!=17&&keyPos!=64)||windowsShift==1) // not-shift or windows mode
+          if ((keyPos!=17&&keyPos!=64)||windowsShift==1) // not-shift or windows mode
           {
-          lastDebounceTime[keyPos] = millis();  // reset keybounce delay
-          Keyboard.release(keyDown[keyPos]);    // pass key release to windows
+            lastDebounceTime[keyPos] = millis();  // reset keybounce delay
+            Keyboard.release(keyDown[keyPos]);    // pass key release to windows
           }
           else { lastDebounceTime[keyPos]=millis(); shift=0; } // reset keybounce delay and mark as un-shifted
-        keyDown[keyPos]=0; // set keydown array position as up
+          keyDown[keyPos]=0; // set keydown array position as up
         }
-   }
-       }
-  digitalWrite(outPinSet,HIGH); // set output back to high
- }
+      }
+    }
+    digitalWrite(RowPin,HIGH);    // Set output pin to HIGH
+    delay(1);                     // Delay to make sure it has time to go HIGH before switching to INPUT
+    pinMode(RowPin,INPUT_PULLUP); // Set output pin back to INPUT with pullup to make sure it stays HIGH
+  }
 }
