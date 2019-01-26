@@ -53,7 +53,7 @@
 //  Joy 1
 //   8        1       1 - TX
 //  Joy 2
-//   8        2       2 - RX
+//   8        2       0 - RX
 
 
 // Keyboard Matrix Now Matches real C64 with one more column.
