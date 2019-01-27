@@ -8,6 +8,12 @@ Optimized some code (Well my friend Worm did. :) Thank you so much )
 Added a second joystick fire button on pin 9, and decided to just go foward with the joystick version.
 If you don't want to use joystick support, just use the keyboard connections only. Nothing else needed to config.
 
+01/27/19                  Swapped F10 and F12, Restore key is now F10 unshifted and F12 with left shifted.
+                          Added new config files for Vice 3. Tested with Version 3.2 See the readme file in the config directory for where to put the files.
+                          Vice 2 hasn't been tested in a while. If there are problems, please let me know.
+						  
+						  
+						  
 See inside the INO file for wiring instructions.
 
 Variables to take note of.

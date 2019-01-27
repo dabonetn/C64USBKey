@@ -156,7 +156,7 @@ char keyMapUS[240]={
 55,  121, 103,  56,  98, 104, 117, 118, 230, 223,     //  7     Y      G    8    B     H   U   V       JR2     JR1      (KP6     KP+)
 57,  105, 106,  48, 109, 107, 111, 110, 229, 207,     //  9     I      J    Zero M     K   O   N       JF2-1   JF1-1    (KP5     ScrLk)
 43,  112, 108,  45,  46,  58,  64,  44, 227, 225,     //  +     P      L    -    .     :   @   ,       JF2-2   JF1-2    (KP3     KP1)
-35,   42,  59, 210, 133,  61, 211,  47, 205,   0,     //  Pound *      ;    Home RSHFT =   Pi  /       Restore Null
+35,   42,  59, 210, 133,  61, 211,  47, 203,   0,     //  Pound *      ;    Home RSHFT =   Pi  /       Restore Null
 49,  178, 128,  50,  32, 135, 113, 177, 232, 220,     //  1     BS     CTRL 2    SPC   C=  Q   RunStop JU2     JU1      (KP8     KP/)
 
 // C64 Mode Shifted Values 
@@ -169,7 +169,7 @@ char keyMapUS[240]={
  39,  89,  71,  40,  66,  72,  85,  86, 230, 223,     //  '     Y      G    (    B     H   U   V       JR2     JR1      (KP6     KP+)
  41,  73,  74,  48,  77,  75,  79,  78, 229, 207,     //  )     I      J    Zero M     K   O   N       JF2-1   JF1-1    (KP5     ScrLk)
  43,  80,  76,  95,  62,  91,  96,  60, 227, 225,     //  +     P      L    -    >     :   @   <       JF2-2   JF1-2    (KP3     KP1)
- 35,  42,  93, 210, 133,  61, 214,  63, 205,   0,     //  Pound *      ;    Home RSHFT =   Pi  ?       Restore Null
+ 35,  42,  93, 210, 133,  61, 214,  63, 203,   0,     //  Pound *      ;    Home RSHFT =   Pi  ?       Restore Null
  33, 178, 128,  34,  32, 135,  81, 177, 232, 220,     //  !     BS     CTRL "    SPC   C=  Q   RS      JU2     JU1      (KP8     KP/)
 
 // Windows Mode
@@ -181,7 +181,7 @@ char keyMapUS[240]={
  55, 121, 103,  56,  98, 104, 117, 118, 230, 223,     //  7     Y      G    8    B     H   U   V       JR2     JR1      (KP6     KP+)
  57, 105, 106,  48, 109, 107, 111, 110, 229, 207,     //  9     I      J    Zero M     K   O   N       JF2-1   JF1-1    (KP5     ScrLk)
  45, 112, 108,  61,  46,  59,  91,  44, 227, 225,     //  +     P      L    -    .     :   @   ,       JF2-2   JF1-2    (KP3     KP1)
-209,  93,  39, 210, 133,  92, 212,  47, 205,   0,     //  Pound *      ;    Home RSHFT =   Pi  /       Restore Null
+209,  93,  39, 210, 133,  92, 212,  47, 203,   0,     //  Pound *      ;    Home RSHFT =   Pi  /       Restore Null
  49, 177,   9,  50,  32, 128, 113, 130, 232, 220,     //  1     BS     CTRL 2    SPC   C=  Q   RunStop JU2     JU1      (KP8     KP/)
 };
 
@@ -200,7 +200,7 @@ char keyMapEU[240]={
  55, 121, 103,  56,  98, 104, 117, 118, 230, 223,     //  7     Y      G    8    B     H   U   V       JR2     JR1      (KP6     KP+)
  57, 105, 106,  48, 109, 107, 111, 110, 229, 207,     //  9     I      J    Zero M     K   O   N       JF2-1   JF1-1    (KP5     ScrLk)
  43, 112, 108,  45,  46,  58,  34,  44, 227, 225,     //  +     P      L    -    .     :   @   ,       JF2-2   JF1-2    (KP3     KP1)
- 35,  42,  59, 210, 133,  61, 211,  47, 205,   0,     //  Pound *      ;    Home RSHFT =   Pi  /       Restore Null
+ 35,  42,  59, 210, 133,  61, 211,  47, 203,   0,     //  Pound *      ;    Home RSHFT =   Pi  /       Restore Null
  49, 178, 128,  50,  32, 135, 113, 177, 232, 220,     //  1     BS     CTRL 2    SPC   C=  Q   RunStop JU2     JU1      (KP8     KP/)
 
 // C64 Mode Shifted Values 
@@ -213,7 +213,7 @@ char keyMapEU[240]={
  39,  89,  71,  40,  66,  72,  85,  86, 230, 223,     //  '     Y      G    (    B     H   U   V       JR2     JR1      (KP6     KP+)
  41,  73,  74,  48,  77,  75,  79,  78, 229, 207,     //  )     I      J    Zero M     K   O   N       JF2-1   JF1-1    (KP5     ScrLk)
  43,  80,  76,  95,  62,  91,  96,  60, 227, 225,     //  +     P      L    -    >     :   @   <       JF2-2   JF1-2    (KP3     KP1)
- 35,  42,  93, 210, 133,  61, 214,  63, 205,   0,     //  Pound *      ;    Home RSHFT =   Pi  ?       Restore Null
+ 35,  42,  93, 210, 133,  61, 214,  63, 203,   0,     //  Pound *      ;    Home RSHFT =   Pi  ?       Restore Null
  33, 178, 128,  64,  32, 135,  81, 177, 232, 220,     //  !     BS     CTRL "    SPC   C=  Q   RS      JU2     JU1      (KP8     KP/)
 
 // Windows Mode
@@ -225,7 +225,7 @@ char keyMapEU[240]={
  55, 121, 103,  56,  98, 104, 117, 118, 230, 223,     //  7     Y      G    8    B     H   U   V       JR2     JR1      (KP6     KP+)
  57, 105, 106,  48, 109, 107, 111, 110, 229, 207,     //  9     I      J    Zero M     K   O   N       JF2-1   JF1-1    (KP5     ScrLk)
  45, 112, 108,  61,  46,  59,  91,  44, 227, 225,     //  +     P      L    -    .     :   @   ,       JF2-2   JF1-2    (KP3     KP1)
-209,  93,  39, 210, 133,  92, 212,  47, 205,   0,     //  Pound *      ;    Home RSHFT =   Pi  /       Restore Null
+209,  93,  39, 210, 133,  92, 212,  47, 203,   0,     //  Pound *      ;    Home RSHFT =   Pi  /       Restore Null
  49, 177,   9,  50,  32, 128, 113, 130, 232, 220,     //  1     BS     CTRL 2    SPC   C=  Q   RunStop JU2     JU1      (KP8     KP/)
 };
 
@@ -233,7 +233,7 @@ char Hybridkeys[7]{
                                                       // Hybrid Keys. These are the shifted values.  
                                                       // These allow keys to be passed in windows mode that are not shifted values of the original key. 
                                                       // This allows the windows mode to use the cursor keys and F1-F8. The cursor keys and F keys are default, The restore key is F10.
-216, 201, 195, 197, 199, 218, 203,                    // LR F8 F2 F4 F6 UD Restore
+216, 201, 195, 197, 199, 218, 205,                    // LR F8 F2 F4 F6 UD Restore
 };
 
 void setup() 
