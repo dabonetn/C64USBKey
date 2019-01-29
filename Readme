@@ -14,6 +14,10 @@ If you don't want to use joystick support, just use the keyboard connections onl
                           Vice 2 hasn't been tested in a while. If there are problems, please let me know.
 						  
 						  
+01/29/19                  Added a second hybrid key, using the ctrl key on the commodore keyboard.
+                          F1 is windows key, F3 is Altgr, F5 is Page Up, F7 is Page Down, Restore is F9
+						  
+						  
 						  
 See inside the INO file for wiring instructions.
 
