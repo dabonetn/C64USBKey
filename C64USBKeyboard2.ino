@@ -129,13 +129,14 @@ long lastDebounceTime[80];
 int debounceDelay=50;
 int shift=0;
 int Row=0;
- int i;
+int i;
 char * keyMap;
 int windowsShift;
 int DefaultKBMode=0;                                  // Select 0 For Windows Mode On startup or 1 for C64 Mode
 int USKeyboard=1;                                     // Select 1 for US Keyboard or 0 For EU
 int HybridKeyboard=1;                                 // Select 0 for normal or 1 for the left HybridKey allowing all f keys and cursor keys in windows mode. (Also has a shifted restore key)
 int HybridKey=17;                                     // Position of the Hybrid Select key in the keymap, Left Shift = 17, Right Shift = 64
+int HybridKey2=72;                                    // Position of the Hybrid2 Select key in the keymap, CTRL = 72
 int RowPinMap[8] = {9, 3, 4, 5, 6, 7, 8, 2};                // Convert Row number to associated output pin
 int ColPinMap[10] = {10, 16, 14, A3, A0, A1, A2, 15, 1, 0}; // Convert Col number to associated input pin
 
@@ -235,6 +236,13 @@ char Hybridkeys[7]{
 216, 201, 195, 197, 199, 218, 205,                    // LR F8 F2 F4 F6 UD Restore
 };
 
+char Hybridkeys2[5]{
+                                                      // Hybrid Keys2. These are the shifted values.  Defaults to the CTRL Key
+                                                      // These allow keys to be passed in windows mode that are not shifted values of the original key. 
+                                                      // Page Down, Windows Key, Right GUI (Altgr?), F9. Page UP Mapped to F7,F1,F3,F8 and Restore
+214, 131, 135, 211, 202,
+};
+
 void setup() 
 {
   Keyboard.begin();// initialize control over the keyboard:
@@ -301,6 +309,12 @@ void loop() // main keyboard scanning loop
             if (keyDown[HybridKey]&&keyDown[6])  {Keyboard.release (keyDown[HybridKey]);keyDown[keyPos]=Hybridkeys[4];}
             if (keyDown[HybridKey]&&keyDown[7])  {Keyboard.release (keyDown[HybridKey]);keyDown[keyPos]=Hybridkeys[5];}
             if (keyDown[HybridKey]&&keyDown[68]) {Keyboard.release (keyDown[HybridKey]);keyDown[keyPos]=Hybridkeys[6];}
+
+            if (keyDown[HybridKey2]&&keyDown[3])  {Keyboard.release (keyDown[HybridKey2]);keyDown[keyPos]=Hybridkeys2[0];}
+            if (keyDown[HybridKey2]&&keyDown[4])  {Keyboard.release (keyDown[HybridKey2]);keyDown[keyPos]=Hybridkeys2[1];}
+            if (keyDown[HybridKey2]&&keyDown[5])  {Keyboard.release (keyDown[HybridKey2]);keyDown[keyPos]=Hybridkeys2[2];}
+            if (keyDown[HybridKey2]&&keyDown[6])  {Keyboard.release (keyDown[HybridKey2]);keyDown[keyPos]=Hybridkeys2[3];}
+            if (keyDown[HybridKey2]&&keyDown[68]) {Keyboard.release (keyDown[HybridKey2]);keyDown[keyPos]=Hybridkeys2[4];}
           }
           
           if ((keyPos!=17&&keyPos!=64)||windowsShift==1)// is it not-shift or in windows mode?
