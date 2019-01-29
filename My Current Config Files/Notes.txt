@@ -1,0 +1,21 @@
+2 Emulator configs
+
+vice-x64
+db9 joysticks are active
+Ctrl-F1 swaps joystick ports
+Ctrl-Retore quits
+Ctrl-F2 map disk to drive 8
+Shift-Restore Opens Vice Menu
+xbox 360 buttons
+Back button swaps joystick ports
+Right Analog Stick Button quits
+Start button Opens Vice Menu
+Y for virtual keyboard.
+
+
+vice-x64-xbox
+xbox 360 controllers are active along with everything above.
+
+
+
+
