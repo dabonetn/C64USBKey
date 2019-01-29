@@ -239,8 +239,8 @@ char Hybridkeys[7]{
 char Hybridkeys2[5]{
                                                       // Hybrid Keys2. These are the shifted values.  Defaults to the CTRL Key
                                                       // These allow keys to be passed in windows mode that are not shifted values of the original key. 
-                                                      // Page Down, Windows Key, Right GUI (Altgr?), F9. Page UP Mapped to F7,F1,F3,F8 and Restore
-214, 131, 135, 211, 202,
+                                                      // Page Down, F11, F12, Page UP, F9 Mapped to F7,F1,F3,F8 and Restore
+214, 204, 205, 211, 202,
 };
 
 void setup() 
