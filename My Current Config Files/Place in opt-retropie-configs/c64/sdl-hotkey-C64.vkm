@@ -13,11 +13,17 @@
 
 !CLEAR
 
-# F11  Swap Joystick Ports
+# F11 (Left Shift-F1) Swap Joystick Ports
 292 Machine settings&Joystick settings&Swap joystick ports
 
-# F9 to quit
+# F9 (CTRL-RESTORE) to quit
 290 Quit emulator
+
+# ` (Left Shift-F3) Warp Mode
+96 Speed settings&Warp mode
+
+# PgDown (CTRL-F8) Attach Disk to drive 8
+281 Drive&Attach disk image to drive 8
 
 
 # ALT+0
@@ -31,7 +37,7 @@
 # ALT+6
 #1078 Printer&Printer #6 form feed
 # ALT+8
-96 Drive&Attach disk image to drive 8
+#96 Drive&Attach disk image to drive 8
 # ALT+9
 #1081 Drive&Attach disk image to drive 9
 
