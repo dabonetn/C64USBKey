@@ -84,7 +84,7 @@
 # +-----+-----+-----+-----+-----+-----+-----+-----+-----+
 # |Bit 7| 1 ! |A_LFT| CTRL| 2 " |SPACE|  C= |  Q  | R/S |
 # +-----+-----+-----+-----+-----+-----+-----+-----+-----+
-
+# A -- on the end of the line means I modified the line
 !CLEAR
 !LSHIFT 1 7
 !RSHIFT 6 4

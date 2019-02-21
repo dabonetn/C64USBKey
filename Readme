@@ -3,6 +3,15 @@ Original by Pyofer
 See original thread @
 http://www.lemon64.com/forum/viewtopic.php?t=55650
 
+
+
+02/20/19	Teensy LC Support! Hopefully this will be a much more compatible keyboard implementation
+			The new versions are located in the C64Key3* directories. Both versions are the same program, I've just pre commented out the correct stuff for each board.
+			I've changed a lot again, dropping support for the 64 mode keymaps, and the eu keymap. I went with a single keymap that follows the Teensy keyboard macro style.
+			I'm starting the Teensy at pin 1 instead of zero because I have my original pro micro mounted in a 24 pin socket and didn't want to rewire.
+			(Also makes testing both version much easier.)
+
+
 New for 2019.
 Optimized some code (Well my friend Worm did. :) Thank you so much )
 Added a second joystick fire button on pin 9, and decided to just go foward with the joystick version.
@@ -23,6 +32,8 @@ See inside the INO file for wiring instructions.
 
 Variables to take note of.
 
+There are more comments in the actual sketch, so be sure to read around.
+
 
 int DefaultKBMode=0;                                  // Select 0 For Windows Mode On startup or 1 for C64 Mode
 
@@ -40,8 +51,8 @@ int HybridKeyboard=1;                                 // Select 0 for normal or 
 Hybridkeys are there to let you actually type Cursor up, Cursor left and F2 F4 F6 F8 to the computer in windows mode.
 Without this you could only pass the actual key shifted.
 
-
 int HybridKey=17;                                     // Position of the Hybrid Select key in the keymap, Left Shift = 17, Right Shift = 64
+int HybridKey2=72;                                    // Position of the Hybrid2 Select key in the keymap, CTRL = 72
 
 Selects which shift key to activate hybridkeys. You could also make it a completely different key, this value is the position of the key
 in the keyset. 
@@ -65,10 +76,10 @@ CLR/HOME         Home          210
 INST/DEL         Backspace     178
 @                [              91
 *                ]              93
-RESTORE          F12           205        Shifted Value with HYBRIDKEYS=1 is F10, Keycode 203
+RESTORE          F10           205        Shifted Value with HYBRIDKEYS=1 is F12
 :                ;              59
 ;                '              39
 UPARROW(Pi)      Delete        212
 =                \              92
 
-!!!!!!!!Need Testers for the EU modes and both modes for the Commodore mode keysets.!!!!!!!!
+!!!!!!!!Need Testers for the EU !!!
