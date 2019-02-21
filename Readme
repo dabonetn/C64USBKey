@@ -5,11 +5,16 @@ http://www.lemon64.com/forum/viewtopic.php?t=55650
 
 
 
-02/20/19	Teensy LC Support! Hopefully this will be a much more compatible keyboard implementation
-			The new versions are located in the C64Key3* directories. Both versions are the same program, I've just pre commented out the correct stuff for each board.
-			I've changed a lot again, dropping support for the 64 mode keymaps, and the eu keymap. I went with a single keymap that follows the Teensy keyboard macro style.
-			I'm starting the Teensy at pin 1 instead of zero because I have my original pro micro mounted in a 24 pin socket and didn't want to rewire.
-			(Also makes testing both version much easier.)
+02/20/19	
+
+Teensy LC Support! Hopefully this will be a much more compatible keyboard implementation.
+Currently the LC is available for $12 USD + shipping.
+The new versions are located in the C64Key3* directories. 
+Both versions are the same program, I just commented out the correct lines for each board.
+I've changed a lot again, dropping support for the 64 mode keymaps, and the eu keymap. 
+I went with a single keymap that follows the Teensy keyboard macro style.
+I'm starting the Teensy at pin 1 instead of zero because I have my original pro micro mounted in a 24 pin socket
+and didn't want to rewire. (Also makes testing both versions much easier.)
 
 
 New for 2019.
