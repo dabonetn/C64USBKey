@@ -3,7 +3,9 @@ Original by Pyofer
 See original thread @
 http://www.lemon64.com/forum/viewtopic.php?t=55650
 
+02/22/19
 
+Found out that the Teensy only works at 24Mhz, 48Mhz causes weird multiple key presses.
 
 02/20/19	
 
