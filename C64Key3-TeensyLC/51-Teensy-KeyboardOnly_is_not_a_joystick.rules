@@ -1,0 +1,5 @@
+#Teensy Multimedia Keyboard keys detected as a joystick. 
+#This keeps that from happening.But it still takes up JS0. See the inside the sketch to disable completely.
+#Put this file in /etc/udev/rules.d
+SUBSYSTEM=="input", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04d0", ENV{ID_INPUT_JOYSTICK}=="?*", ENV{ID_INPUT_JOYSTICK}=""
+SUBSYSTEM=="input", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04d0", KERNEL=="js[0-9]*", RUN+="/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
