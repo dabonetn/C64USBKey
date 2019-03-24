@@ -39,23 +39,9 @@ See inside the INO file for wiring instructions.
 
 Variables to take note of.
 
-There are more comments in the actual sketch, so be sure to read around.
-
-
-int DefaultKBMode=0;                                  // Select 0 For Windows Mode On startup or 1 for C64 Mode
-
-If you use 64 mode, the shift key won't be sent to the computer, but the shifted character will be.
-64 Mode keysets are the first 2 in each map. 1st is unshifted, 2nd is shifted values.
-Windows mode passes the shift key to the computer and lets it handle the key shifting according to the OS keymap
-
-int USKeyboard=1;                                     // Select 1 for US Keyboard or 0 For EU
-
-This selects which keymap, US or EU.
-The EU set is a carry over from the original code by Pyofer, and may contain errors, please open a issue if you find one please.
-
 int HybridKeyboard=1;                                 // Select 0 for normal or 1 for the left HybridKey allowing all f keys and cursor keys in windows mode. (Also has a shifted restore key)
 
-Hybridkeys are there to let you actually type Cursor up, Cursor left and F2 F4 F6 F8 to the computer in windows mode.
+Hybridkeys are there to let you actually type Cursor up, Cursor left, F2, F4, F6, F8, F9, F11, F12, PGUP, PGDOWN, and ` to the computer in windows mode.
 Without this you could only pass the actual key shifted.
 
 int HybridKey=17;                                     // Position of the Hybrid Select key in the keymap, Left Shift = 17, Right Shift = 64
@@ -64,29 +50,54 @@ int HybridKey2=72;                                    // Position of the Hybrid2
 Selects which shift key to activate hybridkeys. You could also make it a completely different key, this value is the position of the key
 in the keyset. 
 
+This allows you to have to directly send the hybrid key values that are contained in the Hybridkeys Array.
+
+KEY_LEFT, KEY_F8, KEY_F2, KEY_F4, KEY_F6, KEY_UP, KEY_F12, 
+
+These are mapped to the following keys
+
+Cursor L/R, F7, F1, F3, F5, Cursor U/D, and Restore. 
+
+
+The default for Hybridkey is the left shift key, so holding left shift and one of the above keys allows the secondary function of the key,
+
+Right shift will give the original key. So say you needed shift F2, then you would hold both shift keys and press the f1 key.
+For a shifted f1, you would only hold the right function key.
+
+Hybridkey2 array has the following values.
+
+KEY_PAGE_DOWN, KEY_F11, KEY_TILDE, KEY_PAGE_UP, KEY_F9,
+
+These are mapped to the following keys
+
+F7, F1, F3, F5, Restore
+
+The default for Hybridkey2 is the CTRL key, so holding CTRL and one of the above keys allows the secondary function of the key,
+
+
+
 
 Keys That are diffent than the labels
 
-In Windows Mode
 
-Commodore        Actual Key    Keycode
+Commodore        Actual Key    
 Key Label          Sent
 
-Back Arrow       ESC           177
-CTRL             TAB             9
-RUN/STOP         ALT           130
-CommdoreKey      LEFT-CTRL     128
-+                -              45        This makes typing easier for me, because it maps them like a standard keyboard
--                =              61        Not reversed like on the actual C64. Shifted - key gives a + like a real pc keyboard
-Pound            Insert        209
-CLR/HOME         Home          210
-INST/DEL         Backspace     178
-@                [              91
-*                ]              93
-RESTORE          F10           205        Shifted Value with HYBRIDKEYS=1 is F12
-:                ;              59
-;                '              39
-UPARROW(Pi)      Delete        212
-=                \              92
+Back Arrow       KEY_ESC
+CTRL             KEY_TAB
+RUN/STOP         KEY_LEFT_ALT
+CommodoreKey     KEY_LEFT_CTRL
++                KEY_MINUS                      I swapped + and - on the keyboard to maps them like a standard keyboard
+-                KEY_EQUAL                      Not reversed like on the actual C64. Shifted - key gives a + like a real pc keyboard
+Pound            KEY_INSERT
+CLR/HOME         KEY_HOME
+INST/DEL         KEY_BACKSPACE
+@                KEY_LEFT_BRACE
+*                KEY_RIGHT_BRACE
+RESTORE          KEY_F10        				Hybridkey is F12, Hybridkey2 is F9
+:                KEY_SEMICOLON
+;                KEY_QUOTE
+UPARROW(Pi)      KEY_DELETE
+=                KEY_BACKSLASH
 
 !!!!!!!!Need Testers for the EU !!!
