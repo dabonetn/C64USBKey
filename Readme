@@ -100,4 +100,18 @@ RESTORE          KEY_F10        				Hybridkey is F12, Hybridkey2 is F9
 UPARROW(Pi)      KEY_DELETE
 =                KEY_BACKSLASH
 
+
+
+Hybrid Key Assignments
+
+KEY             LeftShift        CTRL
+F1                 F2             F11
+F3                 F4             ~ (TILDE)
+F5                 F6             PAGEUP
+F7                 F8             PAGEDOWN
+RESTORE            F12            F9
+CRSR U/D         CRSR UP
+CRSR L/R         CRSR LEFT
+
+
 !!!!!!!!Need Testers for the EU !!!
