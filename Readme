@@ -1,7 +1,18 @@
 C64 USB Keyboard mod
-Original by Pyofer
-See original thread @
-http://www.lemon64.com/forum/viewtopic.php?t=55650
+
+03/28/19
+Added fix for German umlaut lowercase key in the promicro version. Teensy still needs testing.
+
+To get the correct key, uncomment the line 
+
+// #include "keydefs-german.h"                      // Uncomment to fix German umlaut รค/ key 
+
+to be 
+
+#include "keydefs-german.h"                      // Uncomment to fix German umlaut รค/ key 
+
+Many thanks to hpingel for the fix.
+
 
 02/22/19
 
@@ -34,6 +45,9 @@ If you don't want to use joystick support, just use the keyboard connections onl
                           F1 is F11, F3 is F12, F5 is Page Up, F7 is Page Down, Restore is F9
 						  
 						  
+Based off code by Pyofer 
+http://www.lemon64.com/forum/viewtopic.php?t=55650
+
 						  
 See inside the INO file for wiring instructions.
 
