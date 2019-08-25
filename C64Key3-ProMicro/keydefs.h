@@ -86,7 +86,7 @@
 #define KEY_RIGHT_BRACE 0x5D
 #define KEY_BACKSLASH 0x5C
 #define KEY_SEMICOLON 0x3B
-#define KEY_QUOTE 0x22
+#define KEY_QUOTE 0x27
 #define KEY_TILDE 0x7E
 #define KEY_COMMA 0x2C
 #define KEY_PERIOD 0x2E
