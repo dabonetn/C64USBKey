@@ -1,4 +1,8 @@
 C64 USB Keyboard mod
+08/25/19
+Fixed a bug for no single quote available in the arduino version.
+
+All the keycodes I have been using are found in the teensy keylayouts.h file.
 
 03/28/19
 Added fix for German umlaut lowercase key in the promicro version. Teensy still needs testing.
