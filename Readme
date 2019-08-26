@@ -5,18 +5,9 @@ Fixed a bug for no single quote available in the arduino version.
 All the keycodes I have been using are found in the teensy keylayouts.h file.
 
 03/28/19
-Added fix for German umlaut lowercase key in the promicro version. Teensy still needs testing.
+EDIT::::Added fix for German umlaut lowercase key in the promicro version. Teensy still needs testing.
 
-To get the correct key, uncomment the line 
-
-// #include "keydefs-german.h"                      // Uncomment to fix German umlaut รค/ key 
-
-to be 
-
-#include "keydefs-german.h"                      // Uncomment to fix German umlaut รค/ key 
-
-Many thanks to hpingel for the fix.
-
+This was a bug caused by the wrong KEY_QUOTE value in keydefs.h, should work with no changes for German users now.
 
 02/22/19
 
