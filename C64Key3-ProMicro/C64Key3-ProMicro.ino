@@ -64,7 +64,6 @@
 #include <HID.h>                                    // Comment out for Teensey
 #include <Keyboard.h>                               // Comment out for Teensey
 #include "keydefs.h"                                // Comment out for Teensey
-// #include "keydefs-german.h"                      // Uncomment to fix German umlaut ä/ key 
 
 int inChar=0;
 int keyPos=0;
