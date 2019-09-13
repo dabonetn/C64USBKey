@@ -1,4 +1,21 @@
 C64 USB Keyboard mod
+09/13/19
+
+Added a quick and dirty soarer keyboard config file.
+
+
+
+Also found a strange bug. In all the versions, so it's a weird matrix problem.
+
+When I have a standard atari joystick plugged in, all keys work as they should.
+But when I have a Wico Boss joystick plugged in, not touching it at all, 
+when I press 3, it sends 3&5, when I press 5 it sends 5&7, and 7 sends 7&9.
+
+Has anyone else seen this bug with a different joystick?
+
+
+
+
 08/25/19
 Fixed a bug for no single quote available in the arduino version.
 
