@@ -1,0 +1,180 @@
+# Matrix setup for COMMODORE 64
+
+#  C64 Keyboard to Teensy 2.0++ pinout
+#  Keyboard Pins      Teensey 2.0++ Pins
+#  
+#  1                        1
+#  2                        KEYPIN Blank
+#  3                        39
+#  4                        BLANK
+#  5                        38
+#  6                        37
+#  7                        36
+#  8                        35
+#  9                        34
+#  10                       33
+#  11                       32
+#  12                       31
+#  13                       28
+#  14                       27
+#  15                       26
+#  16                       25
+#  17                       24
+#  18                       23
+#  19                       22
+#  20                       21
+#  
+#  Joysticks
+#  Port 1
+#  1                        2
+#  2                        3
+#  3                        4
+#  4                        5
+#  6                        6
+#  9                        7
+#  8                        1
+#  
+#  Port 2
+#  1                        8
+#  2                        10
+#  3                        11
+#  4                        12
+#  6                        13
+#  9                        14
+#  8                        15
+
+matrix
+        scanrate 1
+        debounce 5
+		# debounce_method 1
+        blocking 1
+
+  sense                 PE6         PE7          PB0        PB5        PB2         PB3        PB4         PB1        
+
+  strobe        PF0     BACKSPACE   ENTER        RIGHT      F7         F1          F3         F5          DOWN       
+  strobe        PF6     3           W            A          4          Z           S          E           LSHIFT     
+  strobe        PF5     5           R            D          6          C           F          T           X          
+  strobe        PF4     7           Y            G          8          B           H          U           V          
+  strobe        PF3     9           I            J          0          M           K          O           N          
+  strobe        PF2     MINUS       P            L          EQUAL      PERIOD      SEMICOLON  LEFT_BRACE  COMMA      
+  strobe        PF1     INSERT      RIGHT_BRACE  QUOTE      HOME       RSHIFT      BACKSLASH  DELETE      SLASH      
+  strobe        PF7     1           ESC          TAB        2          SPACE       LCTRL      Q           LALT       
+
+#JOYSTICK 1                  CONTROL
+unstrobed -PB7 PAD_SLASH      # U
+unstrobed -PD0 PAD_ASTERIX    # D
+unstrobed -PD1 PAD_MINUS      # L
+unstrobed -PD2 PAD_PLUS       # R
+unstrobed -PD3 PAD_PERIOD     # F1
+unstrobed -PD4 PAD_ENTER      # F2
+#JOYSTICK 2                  CONTROL
+unstrobed -PD5 PAD_8          # U
+unstrobed -PD7 PAD_2          # D
+unstrobed -PE0 PAD_4          # L
+unstrobed -PE1 PAD_6          # R
+unstrobed -PC0 PAD_0          # F1
+unstrobed -PC1 PAD_5          # F2
+
+#RESTORE
+unstrobed -PB6 F10
+
+
+
+  
+end
+
+
+
+
+macroblock
+
+#Left Shift Keys....
+
+        macro DOWN LSHIFT # Left Shift + Down = Up
+                CLEAR_META LSHIFT
+                MAKE UP
+                onbreak
+                BREAK UP
+        endmacro
+        
+        macro RIGHT LSHIFT # Left Shift + Right = Left
+                CLEAR_META LSHIFT
+                MAKE LEFT
+                onbreak
+                BREAK LEFT
+        endmacro
+        
+        macro F1 LSHIFT # Left Shift + F1 = F2
+                CLEAR_META LSHIFT
+                MAKE F2
+                onbreak
+                BREAK F2
+        endmacro
+        
+        macro F3 LSHIFT # Left Shift + F3 = F4
+                CLEAR_META LSHIFT
+                MAKE F4
+                onbreak
+                BREAK F4
+        endmacro
+        
+        macro F5 LSHIFT # Left Shift + F5 = F6
+                CLEAR_META LSHIFT
+                MAKE F6
+                onbreak
+                BREAK F6
+        endmacro
+        
+        macro F7 LSHIFT # Left Shift + F7 = F8
+                CLEAR_META LSHIFT
+                MAKE F8
+                onbreak
+                BREAK F8
+        endmacro
+        
+        macro F10 LSHIFT # Left Shift + Restore = F12
+                CLEAR_META LSHIFT
+                MAKE F12
+                onbreak
+                BREAK F12
+        endmacro
+        
+# ALT Keys (Runstop Key)
+        
+        
+        macro F1 LALT # Left Shift + F7 = F8
+                BREAK LALT
+                MAKE F11
+                onbreak
+                BREAK F11
+                endmacro
+        
+        macro F3 LALT # Left Shift + F7 = F8
+                BREAK LALT
+                MAKE BACK_QUOTE
+                onbreak
+                BREAK BACK_QUOTE
+        endmacro
+        
+        macro F5 LALT # Left Shift + F7 = F8
+                BREAK LALT
+                MAKE PAGE_UP
+                onbreak
+                BREAK PAGE_UP
+        endmacro
+        
+        macro F7 LALT # Left Shift + F7 = F8
+                BREAK LALT
+                MAKE PAGE_DOWN
+                onbreak
+                BREAK PAGE_DOWN
+        endmacro
+        
+        macro F10 LALT # Left Shift + F7 = F8
+                BREAK LALT
+                MAKE F9
+                onbreak
+                BREAK F9
+        endmacro
+        
+endblock
