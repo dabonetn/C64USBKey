@@ -1,4 +1,13 @@
 C64 USB Keyboard mod
+
+09/29/19
+
+Added config for a Teensey++2.0 using Soarer's Keyboard Controller Firmware.
+This config has non blocking joysticks, so no weird matrix issues.
+Pinouts are in the config file.
+
+
+
 09/13/19
 
 Added a quick and dirty soarer keyboard config file.
