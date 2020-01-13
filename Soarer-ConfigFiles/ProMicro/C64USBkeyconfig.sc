@@ -5,7 +5,7 @@ matrix
 	debounce 5
 	blocking 1
 
-	sense		PB6			PB2			PB3			PF4			PF7		PF6			PF5			PB1			PD3			PD2
+	sense		PB6			PB2			PB3			PF4			PF7		PF6			PF5			PB1		PD3		PD2
 	strobe	PB5	BACKSPACE		ENTER			RIGHT			F7			F1		F3			F5			DOWN		UNASSIGNED	UNASSIGNED
 	strobe	PD0	3			W			A			4			Z		S			E			LSHIFT		PAD_2		PAD_ASTERIX
 	strobe	PD4	5			R			D			6			C		F			T			X		PAD_4		PAD_MINUS
